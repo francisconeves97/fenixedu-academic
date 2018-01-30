@@ -23,6 +23,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://fenix-ashes.ist.utl.pt/fenix-renderers" prefix="fr"%>
 <%@ taglib uri="http://fenix-ashes.ist.utl.pt/taglib/enum" prefix="e"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html:xhtml/>
 
 <script language="JavaScript">	
@@ -292,6 +293,30 @@ function check(e,v){
 				</fr:layout>
 			</fr:edit>
 		</logic:equal>
+		
+		<select name="sumRooms">
+		  
+		  <jsp:include page="fragments/roomSpaces.jsp"/>
+		  
+		  <%--<logic:iterate id="summaryRoomId" name="rooms">
+			  
+			  <bean:define id="summaryRoomChild" name="summaryRoomId" property="children" />
+		      <logic:notEmpty name="summaryRoomChild">
+		          <optgroup label="${summaryRoomId.fullName}" ></optgroup>
+                  <bean:define id="summaryRoomChild" name="summaryRoomId" property="children" />
+		      </logic:notEmpty>
+		      
+		      <logic:empty name="summaryRoomId" property="children">
+		          <option>${summaryRoomId.fullName}</option>
+		      </logic:empty>
+		      <logic:iterate id="summaryRoomChildId" name="summaryRoomChild">
+		          <logic:notEmpty name="summaryRoomChild">
+                    <optgroup label="${summaryRoomChildId.fullName}" ></optgroup>
+                  </logic:notEmpty>
+		      </logic:iterate>
+		      
+		  </logic:iterate> --%>
+		</select>
 			
 			
 			<html:submit bundle="HTMLALT_RESOURCES" altKey="submit.submit" titleKey="message.button.save"><bean:message key="button.save" bundle="DEFAULT"/></html:submit>

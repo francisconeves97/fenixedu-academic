@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,7 @@ import org.fenixedu.academic.domain.ShiftType;
 import org.fenixedu.academic.domain.Summary;
 import org.fenixedu.academic.domain.Teacher;
 import org.fenixedu.academic.domain.exceptions.DomainException;
+import org.fenixedu.academic.domain.space.SpaceUtils;
 import org.fenixedu.academic.dto.ShowSummariesBean;
 import org.fenixedu.academic.dto.ShowSummariesBean.ListSummaryType;
 import org.fenixedu.academic.dto.ShowSummariesBean.SummariesOrder;
@@ -61,6 +63,7 @@ import org.fenixedu.academic.ui.struts.action.teacher.executionCourse.ExecutionC
 import org.fenixedu.academic.util.HourMinuteSecond;
 import org.fenixedu.commons.i18n.I18N;
 import org.fenixedu.commons.i18n.LocalizedString;
+import org.fenixedu.spaces.domain.Space;
 import org.fenixedu.bennu.struts.annotations.Forward;
 import org.fenixedu.bennu.struts.annotations.Forwards;
 import org.fenixedu.bennu.struts.annotations.Mapping;
@@ -275,6 +278,7 @@ public class SummariesManagementDA extends FenixDispatchAction {
         bean.setLessonType(null);
 
         if (bean.getSummaryType() != null && bean.getSummaryType().equals(SummaryType.EXTRA_SUMMARY)) {
+            request.setAttribute("rooms", Space.getTopLevelSpaces());
             request.setAttribute("notShowLessonPlanningsAndSummaries", Boolean.TRUE);
         }
 
