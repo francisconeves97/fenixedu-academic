@@ -667,6 +667,7 @@ public class ManageThesisDA extends AbstractManageThesisDA {
 
             response.setContentLength(data.length);
             response.setContentType("application/pdf");
+            response.setCharacterEncoding("ISO-8859-1");
             response.addHeader("Content-Disposition", String.format("attachment; filename=%s.pdf", document.getReportFileName()));
             response.getOutputStream().write(data);
 
