@@ -71,6 +71,12 @@
 	<p><span><bean:message bundle="APPLICATION_RESOURCES" key="label.warning.coursesAndGroupsSimultaneousEnrolment"/></span></p>
 </div>
 
+<div class="infoop2 mtop05 mbottom15">
+	<p><strong>Cadeiras Seleccionadas:</strong></p>
+	<ul class="mbottom15 selected-modules">
+	</ul>
+</div>
+
 	<logic:messagesPresent message="true" property="success">
 		<p>
 		<span class="success0" style="padding: 0.25em;">
@@ -188,6 +194,43 @@ function submitForm(btn) {
 }
 (function () {
 	$('table').removeClass('table');
+
+    $('.pre-selected').each(function(i, obj) {
+        // Get all row's cells
+		var cells = $(obj).parent().siblings().andSelf();
+
+		var courseNameCell = $(cells[0]);
+		courseNameCell.append('<strong> - Pré-Inscrito</strong>');
+        cells.addClass('se_temporary');
+    });
+
+    $('.pre-selected').one( "click", function(el) {
+        var cells = $(this).parent().siblings().andSelf();
+
+        $(cells[0]).children('strong').remove();
+        $(cells[0]).append('<span style="color: #888"> - Pré-Inscrito</span>');
+        cells.removeClass('se_temporary');
+    });
+
+    var selectedModules = $.makeArray($('.pre-selected').map(function(i, obj) {
+        var cells = $(obj).parent().siblings().andSelf();
+
+        var courseName = $(cells[0]).text();
+        return '<li>' + courseName + '</li>';
+    }));
+
+    $('.selected-modules').html(selectedModules.join(""));
+
+    $('.module-enrol-checkbox').on('click', function(){
+        var selectedModules = $.makeArray($('.module-enrol-checkbox:checked').map(function(i, obj) {
+            var cells = $(obj).parent().siblings().andSelf();
+
+            var courseName = $(cells[0]).text();
+            return '<li>' + courseName + '</li>';
+        }));
+        $('.selected-modules').html(selectedModules.join(""));
+    });
+
 })();
 
 function checkState(){
@@ -199,4 +242,6 @@ function checkState(){
 	}
 	return true;
 }
+
+
 </script>

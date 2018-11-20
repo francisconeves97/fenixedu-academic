@@ -376,8 +376,10 @@ public class BolonhaStudentEnrolmentLayout extends Layout {
                 checkBoxCell.setClasses(getRenderer().getCurricularCourseToEnrolCheckBoxClasses());
 
                 HtmlCheckBox checkBox = new HtmlCheckBox(false);
+                checkBox.addClass("module-enrol-checkbox");
                 if (degreeModulesToSelect.contains(degreeModuleToEvaluate)) {
                     checkBox.setChecked(true);
+                    checkBox.addClass("pre-selected");
                 }
                 checkBox.setName("degreeModuleToEnrolCheckBox" + degreeModuleToEvaluate.getKey());
                 checkBox.setUserValue(degreeModuleToEvaluate.getKey());
