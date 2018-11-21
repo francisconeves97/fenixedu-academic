@@ -197,7 +197,7 @@ function getSelectedModules() {
     return $.makeArray($('.module-enrol-checkbox:checked').map(function(i, obj) {
 
         return '<li>' + $(obj).data('fullpath') + '</li>';
-    })).join("");
+    })).join("") || '${portal.message('resources.StudentResources', 'label.enrollment.courses.selected.empty')}';
 }
 
 (function () {
