@@ -72,7 +72,7 @@
 </div>
 
 <div class="infoop2 mtop05 mbottom15">
-	<p><strong>Cadeiras Seleccionadas:</strong></p>
+	<p><strong><bean:message bundle="STUDENT_RESOURCES"  key="label.enrollment.courses.selected" />:</strong></p>
 	<ul class="mbottom15 selected-modules">
 	</ul>
 </div>
@@ -192,6 +192,14 @@ function submitForm(btn) {
 	$(btn).addClass('disabled');
 	$(btn).html('${portal.message('resources.ApplicationResources', 'label.saving')}');
 }
+
+function getSelectedModules() {
+    return $.makeArray($('.module-enrol-checkbox:checked').map(function(i, obj) {
+
+        return '<li>' + $(obj).data('fullpath') + '</li>';
+    })).join("");
+}
+
 (function () {
 	$('table').removeClass('table');
 
@@ -200,35 +208,27 @@ function submitForm(btn) {
 		var cells = $(obj).parent().siblings().andSelf();
 
 		var courseNameCell = $(cells[0]);
-		courseNameCell.append('<strong> - Pré-Inscrito</strong>');
-        cells.addClass('se_temporary');
+
+		if ($(obj).is(":checked")) {
+            cells.addClass('se_temporary');
+            courseNameCell.append('<strong> - ${portal.message('resources.StudentResources', 'label.enrollment.courses.preEnrolled')}</strong>');
+		} else {
+            courseNameCell.append('<span style="color: #888"> - ${portal.message('resources.StudentResources', 'label.enrollment.courses.preEnrolled')}</span>');
+		}
     });
 
-    $('.pre-selected').one( "click", function(el) {
+    $('.pre-selected:checked').one( "click", function(el) {
         var cells = $(this).parent().siblings().andSelf();
 
         $(cells[0]).children('strong').remove();
-        $(cells[0]).append('<span style="color: #888"> </span>');
+        $(cells[0]).append('<span style="color: #888"> - ${portal.message('resources.StudentResources', 'label.enrollment.courses.preEnrolled')}</span>');
         cells.removeClass('se_temporary');
     });
 
-    var selectedModules = $.makeArray($('.pre-selected').map(function(i, obj) {
-        var cells = $(obj).parent().siblings().andSelf();
-
-        var courseName = $(cells[0]).text();
-        return '<li>' + courseName + '</li>';
-    }));
-
-    $('.selected-modules').html(selectedModules.join(""));
+    $('.selected-modules').html(getSelectedModules());
 
     $('.module-enrol-checkbox').on('click', function(){
-        var selectedModules = $.makeArray($('.module-enrol-checkbox:checked').map(function(i, obj) {
-            var cells = $(obj).parent().siblings().andSelf();
-
-            var courseName = $(cells[0]).text();
-            return '<li>' + courseName + '</li>';
-        }));
-        $('.selected-modules').html(selectedModules.join(""));
+        $('.selected-modules').html(getSelectedModules());
     });
 
 })();
