@@ -334,6 +334,12 @@
             <artifactId>postCodeTools</artifactId>
             <version>${version.org.fenixedu.postCodeTools}</version>
         </dependency>
+        <dependency>
+            <groupId>org.fenixedu</groupId>
+            <artifactId>bennu-oauth</artifactId>
+            <version>${version.org.fenixedu.bennu}</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <repositories>
