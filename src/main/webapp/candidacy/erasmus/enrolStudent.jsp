@@ -62,7 +62,7 @@
 			
 		<fr:edit id="studentEnrolment" name="bolonhaStudentEnrollmentBean" schema="candidacy.enrolment.periods">				
 			<fr:destination name="postBack" path="/caseHandlingMobilityIndividualApplicationProcess.do?method=postBack"/>
-			<fr:layout name="tabular">
+			<fr:layout name="tabular">Cadeiras Seleccionadas:
 				<fr:property name="classes" value=""/>
 				<fr:property name="columnClasses" value=",,tdclear tderror1"/>
 			</fr:layout>

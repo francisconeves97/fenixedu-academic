@@ -208,7 +208,7 @@ function submitForm(btn) {
         var cells = $(this).parent().siblings().andSelf();
 
         $(cells[0]).children('strong').remove();
-        $(cells[0]).append('<span style="color: #888"> - Pré-Inscrito</span>');
+        $(cells[0]).append('<span style="color: #888"> </span>');
         cells.removeClass('se_temporary');
     });
 

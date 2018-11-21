@@ -377,6 +377,8 @@ public class BolonhaStudentEnrolmentLayout extends Layout {
 
                 HtmlCheckBox checkBox = new HtmlCheckBox(false);
                 checkBox.addClass("module-enrol-checkbox");
+                checkBox.setAttribute("data-fullpath", degreeModuleToEvaluate.getFullPath());
+
                 if (degreeModulesToSelect.contains(degreeModuleToEvaluate)) {
                     checkBox.setChecked(true);
                     checkBox.addClass("pre-selected");
