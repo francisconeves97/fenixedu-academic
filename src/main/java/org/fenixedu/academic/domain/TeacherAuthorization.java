@@ -36,7 +36,7 @@ public class TeacherAuthorization extends TeacherAuthorization_Base implements C
     }
 
     protected TeacherAuthorization(Teacher teacher, Department department, ExecutionSemester executionSemester,
-            TeacherCategory teacherCategory, Boolean contracted, Double lessonHours) {
+            TeacherCategory teacherCategory, Boolean contracted, Double lessonHours, Space campus) {
         this();
         setTeacher(teacher);
         setDepartment(department);
@@ -45,6 +45,7 @@ public class TeacherAuthorization extends TeacherAuthorization_Base implements C
         setContracted(contracted);
         setLessonHours(lessonHours);
         setAuthorizer(Authenticate.getUser());
+        setCampus(campus);
     }
 
     public static TeacherAuthorization createOrUpdate(Teacher teacher, Department department,
@@ -67,7 +68,7 @@ public class TeacherAuthorization extends TeacherAuthorization_Base implements C
             }
         }
         teacher.getPerson().getUser().openLoginPeriod();
-        return new TeacherAuthorization(teacher, department, executionSemester, teacherCategory, contracted, lessonHours);
+        return new TeacherAuthorization(teacher, department, executionSemester, teacherCategory, contracted, lessonHours, campus);
     }
 
     @Override
