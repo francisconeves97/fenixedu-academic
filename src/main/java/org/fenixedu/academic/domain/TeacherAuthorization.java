@@ -49,6 +49,12 @@ public class TeacherAuthorization extends TeacherAuthorization_Base implements C
     }
 
     public static TeacherAuthorization createOrUpdate(Teacher teacher, Department department,
+            ExecutionSemester executionSemester, TeacherCategory teacherCategory, Boolean contracted, Double lessonHours) {
+        return createOrUpdate(teacher, department,
+                executionSemester, teacherCategory, contracted, lessonHours, null);
+    }
+
+    public static TeacherAuthorization createOrUpdate(Teacher teacher, Department department,
             ExecutionSemester executionSemester, TeacherCategory teacherCategory, Boolean contracted, Double lessonHours, Space campus) {
         Objects.requireNonNull(teacher);
         Objects.requireNonNull(department);
@@ -56,7 +62,6 @@ public class TeacherAuthorization extends TeacherAuthorization_Base implements C
         Objects.requireNonNull(teacherCategory);
         Objects.requireNonNull(contracted);
         Objects.requireNonNull(lessonHours);
-        Objects.requireNonNull(campus);
 
         TeacherAuthorization existing = teacher.getTeacherAuthorization(executionSemester.getAcademicInterval()).orElse(null);
         if (existing != null) {
