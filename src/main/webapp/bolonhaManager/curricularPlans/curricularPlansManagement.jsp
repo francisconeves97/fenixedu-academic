@@ -91,7 +91,7 @@
 				<h:outputLink rendered="#{degreeCurricularPlan.curricularStage.name == 'APPROVED'}"
 						value="#{DegreeManagement.request.contextPath}/academic-transitions">
 					<h:outputText value="#{bolonhaBundle['createTransitionPlan']}" />
-					<f:param name="destinationDegreeCurricularPlanID" value="#{degreeCurricularPlan.externalId}"/>
+					<f:param name="destinationCurricularPlanId" value="#{degreeCurricularPlan.externalId}"/>
 				</h:outputLink>
 				<h:outputText value=" , " escape="false" rendered="#{degreeCurricularPlan.userCanBuild && degreeCurricularPlan.canModify}"/>
 				<h:outputLink value="#{DegreeManagement.request.contextPath}/bolonhaManager/curricularPlans/buildCurricularPlan.faces" rendered="#{degreeCurricularPlan.userCanBuild && degreeCurricularPlan.canModify}">
